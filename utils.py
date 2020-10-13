@@ -40,7 +40,7 @@ def net_builder(net_name, from_name: bool, net_conf=None):
 
         if net_name not in model_name_list:
             assert Exception(f"[!] Networks\' Name is wrong, check net config, \
-                               expected: {model_nmae_list}  \
+                               expected: {model_name_list}  \
                                received: {net_name}")
         else:
             return models.__dict__[net_name]
