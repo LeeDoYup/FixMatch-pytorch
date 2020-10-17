@@ -128,13 +128,17 @@ class FixMatch:
             x_lb, x_ulb_w, x_ulb_s = x_lb.cuda(args.gpu), x_ulb_w.cuda(args.gpu), x_ulb_s.cuda(args.gpu)
             y_lb = y_lb.cuda(args.gpu)
             
-            inputs = torch.cat((x_lb, x_ulb_w, x_ulb_s))
+            inputs = torch.cat((x_lb, x_ulb_s))
+            inputs_w = x_ulb_w
             
             # inference and calculate sup/unsup losses
             with amp_cm():
+                with torch.no_grad():
+                    logits_x_ulb_w = self.train_model(inputs_w)
+
                 logits = self.train_model(inputs)
                 logits_x_lb = logits[:num_lb]
-                logits_x_ulb_w, logits_x_ulb_s = logits[num_lb:].chunk(2)
+                logits_x_ulb_s = logits[num_lb:]
                 del logits
 
                 # hyper-params for update
