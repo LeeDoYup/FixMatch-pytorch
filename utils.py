@@ -4,6 +4,12 @@ from torch.utils.tensorboard import SummaryWriter
 import logging
 
 def setattr_cls_from_kwargs(cls, kwargs):
+    """
+    Set attributes from kwwargs.
+
+    Args:
+        cls: (todo): write your description
+    """
     #if default values are in the cls,
     #overlap the value by kwargs
     for key in kwargs.keys():
@@ -13,8 +19,19 @@ def setattr_cls_from_kwargs(cls, kwargs):
 
         
 def test_setattr_cls_from_kwargs():
+    """
+    Sets the test class is_set_cls.
+
+    Args:
+    """
     class _test_cls:
         def __init__(self):
+            """
+            Initialize the properties
+
+            Args:
+                self: (todo): write your description
+            """
             self.a = 1
             self.b = 'hello'
     test_cls = _test_cls()
@@ -57,12 +74,28 @@ def net_builder(net_name, from_name: bool, net_conf=None):
 
     
 def test_net_builder(net_name, from_name, net_conf=None):
+    """
+    Test if a new network
+
+    Args:
+        net_name: (str): write your description
+        from_name: (str): write your description
+        net_conf: (todo): write your description
+    """
     builder = net_builder(net_name, from_name, net_conf)
     print(f"net_name: {net_name}, from_name: {from_name}, net_conf: {net_conf}")
     print(builder)
 
     
 def get_logger(name, save_path=None, level='INFO'):
+    """
+    Create a logger.
+
+    Args:
+        name: (str): write your description
+        save_path: (str): write your description
+        level: (todo): write your description
+    """
     logger = logging.getLogger(name)
     logger.setLevel(getattr(logging, level))
     
@@ -81,4 +114,10 @@ def get_logger(name, save_path=None, level='INFO'):
 
 
 def count_parameters(model):
+    """
+    Counts the number of parameters of the model.
+
+    Args:
+        model: (todo): write your description
+    """
     return sum(p.numel() for p in model.parameters() if p.requires_grad)

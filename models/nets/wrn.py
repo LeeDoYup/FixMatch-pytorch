@@ -7,6 +7,18 @@ momentum=0.001
 
 class BasicBlock(nn.Module):
     def __init__(self, in_planes, out_planes, stride, bn_momentum=0.1, leaky_slope=0.0, dropRate=0.0):
+        """
+        Initialize the network.
+
+        Args:
+            self: (todo): write your description
+            in_planes: (int): write your description
+            out_planes: (int): write your description
+            stride: (int): write your description
+            bn_momentum: (str): write your description
+            leaky_slope: (todo): write your description
+            dropRate: (todo): write your description
+        """
         super(BasicBlock, self).__init__()
         self.bn1 = nn.BatchNorm2d(in_planes, momentum=bn_momentum)
         self.relu1 = nn.LeakyReLU(negative_slope=leaky_slope, inplace=True)
@@ -22,6 +34,13 @@ class BasicBlock(nn.Module):
                                                                 padding=0, bias=False) or None
 
     def forward(self, x):
+        """
+        Forward computation.
+
+        Args:
+            self: (todo): write your description
+            x: (todo): write your description
+        """
         if not self.equalInOut:
             x = self.relu1(self.bn1(x))
         else:
@@ -41,21 +60,68 @@ class BasicBlock(nn.Module):
 
 class NetworkBlock(nn.Module):
     def __init__(self, nb_layers, in_planes, out_planes, block, stride, bn_momentum=0.1, leaky_slope=0.0, dropRate=0.0):
+        """
+        Initialize the network.
+
+        Args:
+            self: (todo): write your description
+            nb_layers: (list): write your description
+            in_planes: (int): write your description
+            out_planes: (int): write your description
+            block: (todo): write your description
+            stride: (int): write your description
+            bn_momentum: (str): write your description
+            leaky_slope: (todo): write your description
+            dropRate: (todo): write your description
+        """
         super(NetworkBlock, self).__init__()
         self.layer = self._make_layer(block, in_planes, out_planes, nb_layers, stride, bn_momentum, leaky_slope, dropRate)
 
     def _make_layer(self, block, in_planes, out_planes, nb_layers, stride, bn_momentum, leaky_slope, dropRate):
+        """
+        Make a layer.
+
+        Args:
+            self: (todo): write your description
+            block: (todo): write your description
+            in_planes: (int): write your description
+            out_planes: (todo): write your description
+            nb_layers: (todo): write your description
+            stride: (int): write your description
+            bn_momentum: (int): write your description
+            leaky_slope: (todo): write your description
+            dropRate: (todo): write your description
+        """
         layers = []
         for i in range(nb_layers):
             layers.append(block(i == 0 and in_planes or out_planes, out_planes, i == 0 and stride or 1, bn_momentum, leaky_slope, dropRate))
         return nn.Sequential(*layers)
 
     def forward(self, x):
+        """
+        Return the layer.
+
+        Args:
+            self: (todo): write your description
+            x: (todo): write your description
+        """
         return self.layer(x)
 
 
 class WideResNet(nn.Module):
     def __init__(self, depth, num_classes, widen_factor=1, bn_momentum=0.1, leaky_slope=0.0, dropRate=0.0):
+        """
+        Initialize the network.
+
+        Args:
+            self: (todo): write your description
+            depth: (float): write your description
+            num_classes: (int): write your description
+            widen_factor: (float): write your description
+            bn_momentum: (str): write your description
+            leaky_slope: (todo): write your description
+            dropRate: (todo): write your description
+        """
         super(WideResNet, self).__init__()
         nChannels = [16, 16 * widen_factor, 32 * widen_factor, 64 * widen_factor]
         assert ((depth - 4) % 6 == 0)
@@ -87,6 +153,14 @@ class WideResNet(nn.Module):
                 m.bias.data.zero_()
 
     def forward(self, x, ood_test=False):
+        """
+        Perform forward computation.
+
+        Args:
+            self: (todo): write your description
+            x: (todo): write your description
+            ood_test: (todo): write your description
+        """
         out = self.conv1(x)
         out = self.block1(out)
         out = self.block2(out)
@@ -102,6 +176,17 @@ class WideResNet(nn.Module):
         
 class build_WideResNet:
     def __init__(self, depth=28, widen_factor=2, bn_momentum=0.01, leaky_slope=0.0, dropRate=0.0):
+        """
+        Initialize the gradient.
+
+        Args:
+            self: (todo): write your description
+            depth: (float): write your description
+            widen_factor: (float): write your description
+            bn_momentum: (str): write your description
+            leaky_slope: (todo): write your description
+            dropRate: (todo): write your description
+        """
         self.depth = depth
         self.widen_factor = widen_factor
         self.bn_momentum = bn_momentum
@@ -109,6 +194,13 @@ class build_WideResNet:
         self.leaky_slope = leaky_slope
     
     def build(self, num_classes):
+        """
+        Constructs a linear function
+
+        Args:
+            self: (todo): write your description
+            num_classes: (int): write your description
+        """
         return WideResNet(depth = self.depth,
                           num_classes = num_classes,
                           widen_factor = self.widen_factor,

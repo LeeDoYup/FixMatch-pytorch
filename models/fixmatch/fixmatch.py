@@ -80,11 +80,26 @@ class FixMatch:
     
      
     def set_data_loader(self, loader_dict):
+        """
+        Set the loader loader.
+
+        Args:
+            self: (todo): write your description
+            loader_dict: (dict): write your description
+        """
         self.loader_dict = loader_dict
         self.print_fn(f'[!] data loader keys: {self.loader_dict.keys()}')    
             
     
     def set_optimizer(self, optimizer, scheduler=None):
+        """
+        Set the optimizer.
+
+        Args:
+            self: (todo): write your description
+            optimizer: (todo): write your description
+            scheduler: (todo): write your description
+        """
         self.optimizer = optimizer
         self.scheduler = scheduler
     
@@ -212,6 +227,13 @@ class FixMatch:
             
     @torch.no_grad()
     def evaluate(self, eval_loader=None, args=None):
+        """
+        Evaluate the model.
+
+        Args:
+            self: (todo): write your description
+            eval_loader: (todo): write your description
+        """
         use_ema = hasattr(self, 'eval_model')
         
         eval_model = self.eval_model if use_ema else self.train_model
@@ -240,6 +262,14 @@ class FixMatch:
     
     
     def save_model(self, save_name, save_path):
+        """
+        Saves the model to disk.
+
+        Args:
+            self: (todo): write your description
+            save_name: (str): write your description
+            save_path: (str): write your description
+        """
         save_filename = os.path.join(save_path, save_name)
         train_model = self.train_model.module if hasattr(self.train_model, 'module') else self.train_model
         eval_model = self.eval_model.module if hasattr(self.eval_model, 'module') else self.eval_model
@@ -253,6 +283,13 @@ class FixMatch:
     
     
     def load_model(self, load_path):
+        """
+        Loads the checkpoint.
+
+        Args:
+            self: (todo): write your description
+            load_path: (str): write your description
+        """
         checkpoint = torch.load(load_path)
         
         train_model = self.train_model.module if hasattr(self.train_model, 'module') else self.train_model

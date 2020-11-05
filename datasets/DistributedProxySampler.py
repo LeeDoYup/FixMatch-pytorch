@@ -24,10 +24,25 @@ class DistributedProxySampler(DistributedSampler):
     """
 
     def __init__(self, sampler, num_replicas=None, rank=None):        
+        """
+        Initialize the sampler.
+
+        Args:
+            self: (todo): write your description
+            sampler: (todo): write your description
+            num_replicas: (int): write your description
+            rank: (int): write your description
+        """
         super(DistributedProxySampler, self).__init__(sampler, num_replicas=num_replicas, rank=rank, shuffle=False)
         self.sampler = sampler
 
     def __iter__(self):
+        """
+        Return an iterable of samples.
+
+        Args:
+            self: (todo): write your description
+        """
         # deterministically shuffle based on epoch
         torch.manual_seed(self.epoch)
         indices = list(self.sampler)

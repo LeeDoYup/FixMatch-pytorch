@@ -14,6 +14,14 @@ class TBLog:
     The tensorboard is saved at os.path.join(tb_dir, file_name).
     """
     def __init__(self, tb_dir, file_name):
+        """
+        Initialize the tb file.
+
+        Args:
+            self: (todo): write your description
+            tb_dir: (str): write your description
+            file_name: (str): write your description
+        """
         self.tb_dir = tb_dir
         self.writer = SummaryWriter(os.path.join(self.tb_dir, file_name))
     
@@ -37,15 +45,35 @@ class AverageMeter(object):
     """
 
     def __init__(self):
+        """
+        Reset the internal state.
+
+        Args:
+            self: (todo): write your description
+        """
         self.reset()
 
     def reset(self):
+        """
+        Reset the state.
+
+        Args:
+            self: (todo): write your description
+        """
         self.val = 0
         self.avg = 0
         self.sum = 0
         self.count = 0
 
     def update(self, val, n=1):
+        """
+        Updates the value
+
+        Args:
+            self: (todo): write your description
+            val: (float): write your description
+            n: (array): write your description
+        """
         self.val = val
         self.sum += val * n
         self.count += n
