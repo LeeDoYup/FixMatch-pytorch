@@ -5,16 +5,48 @@ from train_utils import ce_loss
 
 class Get_Scalar:
     def __init__(self, value):
+        """
+        Initialize the value
+
+        Args:
+            self: (todo): write your description
+            value: (todo): write your description
+        """
         self.value = value
         
     def get_value(self, iter):
+        """
+        Return the value of an iterable.
+
+        Args:
+            self: (todo): write your description
+            iter: (todo): write your description
+        """
         return self.value
     
     def __call__(self, iter):
+        """
+        Calls the given call.
+
+        Args:
+            self: (todo): write your description
+            iter: (int): write your description
+        """
         return self.value
 
 
 def consistency_loss(logits_w, logits_s, name='ce', T=1.0, p_cutoff=0.0, use_hard_labels=True):
+    """
+    Consistency loss.
+
+    Args:
+        logits_w: (todo): write your description
+        logits_s: (todo): write your description
+        name: (str): write your description
+        T: (array): write your description
+        p_cutoff: (array): write your description
+        use_hard_labels: (bool): write your description
+    """
     assert name in ['ce', 'L2']
     logits_w = logits_w.detach()
     if name == 'L2':

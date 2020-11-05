@@ -20,6 +20,14 @@ std['cifar100'] = [x / 255 for x in [68.2,  65.4,  70.4]]
 
 
 def get_transform(mean, std, train=True):
+    """
+    Get a tensor.
+
+    Args:
+        mean: (str): write your description
+        std: (str): write your description
+        train: (bool): write your description
+    """
     if train:
         return transforms.Compose([transforms.RandomHorizontalFlip(),
                                       transforms.RandomCrop(32, padding=4),

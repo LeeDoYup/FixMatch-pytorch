@@ -12,43 +12,106 @@ from PIL import Image
 
 
 def AutoContrast(img, _):
+    """
+    Convert an image to an image.
+
+    Args:
+        img: (array): write your description
+        _: (todo): write your description
+    """
     return PIL.ImageOps.autocontrast(img)
 
 
 def Brightness(img, v):
+    """
+    Convert an image to an image.
+
+    Args:
+        img: (array): write your description
+        v: (todo): write your description
+    """
     assert v >= 0.0
     return PIL.ImageEnhance.Brightness(img).enhance(v)
 
 
 def Color(img, v):
+    """
+    Convert an image to an image.
+
+    Args:
+        img: (array): write your description
+        v: (str): write your description
+    """
     assert v >= 0.0
     return PIL.ImageEnhance.Color(img).enhance(v)
 
 
 def Contrast(img, v):
+    """
+    Convert an image in antsimage.
+
+    Args:
+        img: (array): write your description
+        v: (todo): write your description
+    """
     assert v >= 0.0
     return PIL.ImageEnhance.Contrast(img).enhance(v)
 
 
 def Equalize(img, _):
+    """
+    Equalize an image.
+
+    Args:
+        img: (array): write your description
+        _: (array): write your description
+    """
     return PIL.ImageOps.equalize(img)
 
 
 def Invert(img, _):
+    """
+    Convert an image to an image.
+
+    Args:
+        img: (array): write your description
+        _: (todo): write your description
+    """
     return PIL.ImageOps.invert(img)
 
 
 def Identity(img, v):
+    """
+    Return the identity of an image
+
+    Args:
+        img: (array): write your description
+        v: (array): write your description
+    """
     return img
 
 
 def Posterize(img, v):  # [4, 8]
+    """
+    Convert an image to poster.
+
+    Args:
+        img: (array): write your description
+        v: (todo): write your description
+    """
     v = int(v)
     v = max(1, v)
     return PIL.ImageOps.posterize(img, v)
 
 
 def Rotate(img, v):  # [-30, 30]
+    """
+    Rotate an image
+
+    Args:
+        img: (array): write your description
+        v: (int): write your description
+    """
     #assert -30 <= v <= 30
     #if random.random() > 0.5:
     #    v = -v
@@ -57,11 +120,25 @@ def Rotate(img, v):  # [-30, 30]
 
 
 def Sharpness(img, v):  # [0.1,1.9]
+    """
+    Convert an image to an image.
+
+    Args:
+        img: (array): write your description
+        v: (todo): write your description
+    """
     assert v >= 0.0
     return PIL.ImageEnhance.Sharpness(img).enhance(v)
 
 
 def ShearX(img, v):  # [-0.3, 0.3]
+    """
+    Transform an image
+
+    Args:
+        img: (array): write your description
+        v: (array): write your description
+    """
     #assert -0.3 <= v <= 0.3
     #if random.random() > 0.5:
     #    v = -v
@@ -69,6 +146,13 @@ def ShearX(img, v):  # [-0.3, 0.3]
 
 
 def ShearY(img, v):  # [-0.3, 0.3]
+    """
+    Transform an image
+
+    Args:
+        img: (array): write your description
+        v: (array): write your description
+    """
     #assert -0.3 <= v <= 0.3
     #if random.random() > 0.5:
     #    v = -v
@@ -76,6 +160,13 @@ def ShearY(img, v):  # [-0.3, 0.3]
 
 
 def TranslateX(img, v):  # [-150, 150] => percentage: [-0.45, 0.45]
+    """
+    Convert an image to antsimage
+
+    Args:
+        img: (array): write your description
+        v: (array): write your description
+    """
     #assert -0.3 <= v <= 0.3
     #if random.random() > 0.5:
     #    v = -v
@@ -84,6 +175,13 @@ def TranslateX(img, v):  # [-150, 150] => percentage: [-0.45, 0.45]
 
 
 def TranslateXabs(img, v):  # [-150, 150] => percentage: [-0.45, 0.45]
+    """
+    Convert image to image
+
+    Args:
+        img: (array): write your description
+        v: (todo): write your description
+    """
     #assert v >= 0.0
     #if random.random() > 0.5:
     #    v = -v
@@ -91,6 +189,13 @@ def TranslateXabs(img, v):  # [-150, 150] => percentage: [-0.45, 0.45]
 
 
 def TranslateY(img, v):  # [-150, 150] => percentage: [-0.45, 0.45]
+    """
+    Convert antsimage
+
+    Args:
+        img: (array): write your description
+        v: (array): write your description
+    """
     #assert -0.3 <= v <= 0.3
     #if random.random() > 0.5:
     #    v = -v
@@ -99,6 +204,13 @@ def TranslateY(img, v):  # [-150, 150] => percentage: [-0.45, 0.45]
 
 
 def TranslateYabs(img, v):  # [-150, 150] => percentage: [-0.45, 0.45]
+    """
+    Convert an image to an image
+
+    Args:
+        img: (array): write your description
+        v: (todo): write your description
+    """
     #assert 0 <= v
     #if random.random() > 0.5:
     #    v = -v
@@ -106,11 +218,25 @@ def TranslateYabs(img, v):  # [-150, 150] => percentage: [-0.45, 0.45]
 
 
 def Solarize(img, v):  # [0, 256]
+    """
+    Convert an rgb image.
+
+    Args:
+        img: (array): write your description
+        v: (array): write your description
+    """
     assert 0 <= v <= 256
     return PIL.ImageOps.solarize(img, v)
 
 
 def Cutout(img, v):  #[0, 60] => percentage: [0, 0.2] => change to [0, 0.5]
+    """
+    Convert an image to an image
+
+    Args:
+        img: (array): write your description
+        v: (array): write your description
+    """
     assert 0.0 <= v <= 0.5
     if v <= 0.:
         return img
@@ -120,6 +246,13 @@ def Cutout(img, v):  #[0, 60] => percentage: [0, 0.2] => change to [0, 0.5]
 
 
 def CutoutAbs(img, v):  # [0, 60] => percentage: [0, 0.2]
+    """
+    Draws an image with the image
+
+    Args:
+        img: (array): write your description
+        v: (int): write your description
+    """
     # assert 0 <= v <= 20
     if v < 0:
         return img
@@ -141,6 +274,11 @@ def CutoutAbs(img, v):  # [0, 60] => percentage: [0, 0.2]
 
     
 def augment_list():  
+    """
+    Create a list.
+
+    Args:
+    """
     l = [
         (AutoContrast, 0, 1),
         (Brightness, 0.05, 0.95),
@@ -162,12 +300,27 @@ def augment_list():
     
 class RandAugment:
     def __init__(self, n, m):
+        """
+        Initialize the list.
+
+        Args:
+            self: (todo): write your description
+            n: (int): write your description
+            m: (int): write your description
+        """
         self.n = n
         self.m = m      # [0, 30] in fixmatch, deprecated.
         self.augment_list = augment_list()
 
         
     def __call__(self, img):
+        """
+        Return a random variate method
+
+        Args:
+            self: (todo): write your description
+            img: (todo): write your description
+        """
         ops = random.choices(self.augment_list, k=self.n)
         for op, min_val, max_val in ops:
             val = min_val + float(max_val - min_val)*random.random()

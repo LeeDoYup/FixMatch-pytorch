@@ -134,6 +134,13 @@ def get_data_loader(dset,
 
     
 def get_onehot(num_classes, idx):
+    """
+    Return the indices of the indexes.
+
+    Args:
+        num_classes: (int): write your description
+        idx: (str): write your description
+    """
     onehot = np.zeros([num_classes], dtype=np.float32)
     onehot[idx] += 1.0
     return onehot
