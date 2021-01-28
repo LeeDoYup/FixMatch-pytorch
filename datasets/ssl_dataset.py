@@ -117,7 +117,7 @@ class SSL_Dataset:
         lb_dset = BasicDataset(lb_data, lb_targets, num_classes, 
                                transform, False, None, onehot)
         
-        ulb_dset = BasicDataset(data, targets, num_classes, 
+        ulb_dset = BasicDataset(ulb_data, ulb_targets, num_classes, 
                                transform, use_strong_transform, strong_transform, onehot)
         
         return lb_dset, ulb_dset
