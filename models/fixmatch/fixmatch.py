@@ -266,6 +266,10 @@ class FixMatch:
                     eval_model.load_state_dict(checkpoint[key])
                 elif key == 'it':
                     self.it = checkpoint[key]
+                elif key == 'scheduler':
+                    self.scheduler.load_state_dict(checkpoint[key])
+                elif key == 'optimizer':
+                    self.optimizer.load_state_dict(checkpoint[key]) 
                 else:
                     getattr(self, key).load_state_dict(checkpoint[key])
                 self.print_fn(f"Check Point Loading: {key} is LOADED")
